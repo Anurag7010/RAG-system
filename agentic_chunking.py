@@ -1,21 +1,12 @@
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-from langchain_huggingface import HuggingFaceEmbeddings
-import os
 from openai import default_headers
 # Load environment variables
 load_dotenv()
 
 # Initialize the LLM
 llm = ChatOpenAI(
-    model="openai/gpt-4o-mini",
-    base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENAI_API_KEY"),
-    temperature=0.2,
-    default_headers={
-        "HTTP-Referer": "http://localhost",
-        "X-Title": "RAG App"
-    }
+    model="openai/gpt-4o-mini"
 )
 # Tesla text to chunk
 tesla_text = """Tesla's Q3 Results

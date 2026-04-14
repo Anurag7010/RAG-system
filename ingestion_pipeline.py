@@ -1,7 +1,7 @@
 import os
 from langchain_community.document_loaders import TextLoader, DirectoryLoader
 from langchain_text_splitters import CharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from dotenv import load_dotenv
 
@@ -62,9 +62,8 @@ def split_documents(documents, chunk_size=1000, chunk_overlap=200):
 
 def create_vector_store(chunks, persist_directory="db/chroma_db"):
         
-    embedding_model = HuggingFaceEmbeddings(
-    model_name="BAAI/bge-small-en"
-    )
+    embedding_model = OpenAIEmbeddings(model="text-embedding-3-small")
+
     
     print("Creating vector store")
     vectorstore = Chroma.from_documents(
